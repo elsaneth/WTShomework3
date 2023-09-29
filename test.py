@@ -40,7 +40,10 @@ print(clearance_to_bytes)
 block_nr = 9
 for i in range(0,len(department_to_bytes),16):
 		if (block_nr <= 10):
-			sendAPDU([0xFF, 0xD6, 0x00, block_nr, 16] + department_to_bytes[i:i+16])
+			#sendAPDU([0xFF, 0xD6, 0x00, block_nr, 16] + department_to_bytes[i:i+16])
 			print("kirjutan" + str(block_nr))
 			#move to next block for writing
 		block_nr+=1
+
+secret = hashlib.sha3_256((name+department+clearance).encode()).hexdigest()[:16]
+print("secret" + secret)
